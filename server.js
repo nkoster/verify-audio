@@ -32,8 +32,8 @@ async function uploadHandler(req, res) {
       })
     } else {
       const filename = req.files.filename
-      await filename.mv('./public/' + filename.name)
-      const ffmpeg = `2>&1 ffmpeg -i ${'./public/'+filename.name} \\
+      await filename.mv('./public/upload/' + filename.name)
+      const ffmpeg = `2>&1 ffmpeg -i ${'./public/upload/' + filename.name} \\
       -af loudnorm=I=-16:dual_mono=true:TP=-1.5:LRA=11:print_format=summary \\
       -f null - | \\
       egrep '^Input|^Output|^Normalization|^Target'`
