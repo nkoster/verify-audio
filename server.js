@@ -43,16 +43,22 @@ async function uploadHandler(req, res) {
           return
         }
         let p = stdout.split('\n')
-        const inputIntegrate    = p[2].split(':')[1].trim()
-        const inputTruePeak     = p[3].split(':')[1].trim()
-        const inputLRA          = p[4].split(':')[1].trim()
-        const inputThreshold    = p[5].split(':')[1].trim()
-        const outputIntegrated  = p[6].split(':')[1].trim()
-        const outputTruePeak    = p[7].split(':')[1].trim()
-        const outputLRA         = p[8].split(':')[1].trim()
-        const outputThreshold   = p[9].split(':')[1].trim()
+        const inputIntegrate    = p[ 2].split(':')[1].trim()
+        const inputTruePeak     = p[ 3].split(':')[1].trim()
+        const inputLRA          = p[ 4].split(':')[1].trim()
+        const inputThreshold    = p[ 5].split(':')[1].trim()
+        const outputIntegrated  = p[ 6].split(':')[1].trim()
+        const outputTruePeak    = p[ 7].split(':')[1].trim()
+        const outputLRA         = p[ 8].split(':')[1].trim()
+        const outputThreshold   = p[ 9].split(':')[1].trim()
         const normalizationType = p[10].split(':')[1].trim()
         const targetOffset      = p[11].split(':')[1].trim()
+        const result = {
+          inputIntegrate, inputTruePeak, inputLRA, inputThreshold,
+          outputIntegrated, outputTruePeak, outputLRA, outputThreshold,
+          normalizationType, targetOffset
+        }
+        console.log(result)
         res.send({
           status: true,
           message: 'File is uploaded',
@@ -60,26 +66,12 @@ async function uploadHandler(req, res) {
             name: filename.name,
             mimetype: filename.mimetype,
             size: filename.size,
-            result: {
-              inputIntegrate, inputTruePeak, inputLRA, inputThreshold,
-              outputIntegrated, outputTruePeak, outputLRA, outputThreshold,
-              normalizationType, targetOffset
-            }
+            result
           }
         })
-        // console.log(`stdout: ${p}`, '---------------')
-        // console.log('inputIntegrate', inputIntegrate)
-        // console.log('inputTruePeak', inputTruePeak)
-        // console.log('inputLRA', inputLRA)
-        // console.log('inputThreshold', inputThreshold)
-        // console.log('outputIntegrated', outputIntegrated)
-        // console.log('outputTruePeak', outputTruePeak)
-        // console.log('outputLRA', outputLRA)
-        // console.log('outputThreshold', outputThreshold)
       })
     }
   } catch (err) {
     res.status(500).send(err)
   }
-  console.log(req.body)
 }
