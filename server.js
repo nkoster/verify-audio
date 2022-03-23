@@ -43,17 +43,17 @@ async function uploadHandler(req, res) {
           console.log(err.message)
           return
         }
-        let p = stdout.split('\n')
-        const inputIntegrate    = p[ 2].split(':')[1].trim()
-        const inputTruePeak     = p[ 3].split(':')[1].trim()
-        const inputLRA          = p[ 4].split(':')[1].trim()
-        const inputThreshold    = p[ 5].split(':')[1].trim()
-        const outputIntegrated  = p[ 6].split(':')[1].trim()
-        const outputTruePeak    = p[ 7].split(':')[1].trim()
-        const outputLRA         = p[ 8].split(':')[1].trim()
-        const outputThreshold   = p[ 9].split(':')[1].trim()
-        const normalizationType = p[10].split(':')[1].trim()
-        const targetOffset      = p[11].split(':')[1].trim()
+        const rawOutput = stdout.split('\n')
+        const inputIntegrate    = rawOutput[ 2].split(':')[1].trim()
+        const inputTruePeak     = rawOutput[ 3].split(':')[1].trim()
+        const inputLRA          = rawOutput[ 4].split(':')[1].trim()
+        const inputThreshold    = rawOutput[ 5].split(':')[1].trim()
+        const outputIntegrated  = rawOutput[ 6].split(':')[1].trim()
+        const outputTruePeak    = rawOutput[ 7].split(':')[1].trim()
+        const outputLRA         = rawOutput[ 8].split(':')[1].trim()
+        const outputThreshold   = rawOutput[ 9].split(':')[1].trim()
+        const normalizationType = rawOutput[10].split(':')[1].trim()
+        const targetOffset      = rawOutput[11].split(':')[1].trim()
         const result = {
           inputIntegrate, inputTruePeak, inputLRA, inputThreshold,
           outputIntegrated, outputTruePeak, outputLRA, outputThreshold,
